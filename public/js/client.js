@@ -11,7 +11,7 @@ $("#rock_button,#paper_button,#scissors_button,#lizard_button,#spock_button").cl
     var id = ($(this).attr('id')).split('_')[0];
 
     $.ajax({
-        url: 'http://localhost:3000/play/' + id,
+        url: '/play/' + id,
         type: 'post',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
