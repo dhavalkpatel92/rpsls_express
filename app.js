@@ -8,13 +8,9 @@ var resultArray = '{"outcome":"John","wins":0,"losses":0,"ties":0}';
 var gameArray = ["rock", "paper", "scissors", "lizard", "spock"];
 var resultJSON = JSON.parse(resultArray);
 
-
-//app.engine('html', require('ejs').renderFile);
-
-//app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
-//app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-//app.use(app.router);
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 function gameLogic(requestEle, resultJSON, gameArray) {
     var selectEle = gameArray[Math.floor(Math.random() * gameArray.length)];
@@ -85,18 +81,10 @@ function gameLogic(requestEle, resultJSON, gameArray) {
     return resultJSON;
 }
 
-app.post('/play/:element', function (req, res) {
-  //console.log(req.params.element);
-  var requestEle = req.params.element;
-
-  resultJSON = gameLogic(requestEle, resultJSON, gameArray);
-
-  //res.writeHead(200, {"Content-Type": "application/json"});
-  res.json(resultJSON);
-  console.log(resultJSON);
-  //res.write("asdsd");
-  //res.write(req.params.element);
+app.post('/play/:element', function(req, res) {
+    var requestEle = req.params.element;
+    resultJSON = gameLogic(requestEle, resultJSON, gameArray);
+    res.json(resultJSON);
+    console.log(resultJSON);
 })
-
-
 app.listen(3000);
