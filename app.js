@@ -68,7 +68,7 @@ function gameLogic(requestEle, resultJSON, gameArray) {
   }
     return resultJSON;
 }
-app.get('/result', function(req, res) {
+app.get('/result', function(res) {
     res.json(resultJSON);
     console.log(resultJSON);
 })
