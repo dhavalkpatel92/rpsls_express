@@ -1,11 +1,13 @@
 $(document).ready(function() {
-    $("#result").html(renderjson.set_show_by_default(true)({
-        outcome: '',
-        wins: 0,
-        losses: 0,
-        ties: 0
-    }));
-
+  $.ajax({
+      url: '/result',
+      type: 'get',
+      dataType: 'json',
+      contentType: "application/json; charset=utf-8",
+      success: function(data) {
+          $("#result").html(renderjson.set_show_by_default(true)(data));
+      }
+  });
 });
 $("#rock_button,#paper_button,#scissors_button,#lizard_button,#spock_button").click(function() {
     var id = ($(this).attr('id')).split('_')[0];
